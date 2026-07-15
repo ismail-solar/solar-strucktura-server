@@ -9,3 +9,8 @@ def home(request):
         "message": "Server is running 🚀",
         "ip_address": ip
     })
+    
+
+
+def health_check(request):
+    return JsonResponse({"status": "Online","message": "Server is running 🚀",})

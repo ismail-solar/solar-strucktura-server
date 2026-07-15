@@ -1,19 +1,15 @@
 steps:
-  # Step 1: Checkout the code from GitHub
-  # - name: 'gcr.io/cloud-builders/git'
-  #   args: ['clone', 'https://github.com/Misbahhassan08/solar_server']
-  
   # Step 2: Change directory to the repository
   - name: 'gcr.io/cloud-builders/docker'
     # dir: 'solar_server'
-    args: ['build', '-t', 'gcr.io/vertex-model-training/solar_server', '.']
+    args: ['build', '-t', 'gcr.io/solarstruktura/solar_server', '.']
 
  
   
   # Step 3: Push the Docker image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     # dir: 'solar_server'
-    args: ['push', 'gcr.io/vertex-model-training/solar_server']
+    args: ['push', 'gcr.io/solarstruktura/solar_server']
   
   # Step 4: Deploy the Docker image to Google Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -23,7 +19,7 @@ steps:
       - 'deploy'
       - 'solar-server'
       - '--image'
-      - 'gcr.io/vertex-model-training/solar_server'
+      - 'gcr.io/solarstruktura/solar_server'
       - '--platform'
       - 'managed'
       - '--region'
@@ -31,7 +27,7 @@ steps:
       - '--allow-unauthenticated'
       - '--quiet'
       - '--set-secrets'
-      - 'CLOUDINARY_CLOUD_NAME=CLOUDINARY_CLOUD_NAME:latest,CLOUDINARY_API_KEY=CLOUDINARY_API_KEY:latest,CLOUDINARY_API_SECRET=CLOUDINARY_API_SECRET:latest'
+      - 'CLOUDINARY_CLOUD_NAME=CLOUDINARY_CLOUD_NAME:latest,CLOUDINARY_API_KEY=CLOUDINARY_API_KEY:latest,CLOUDINARY_API_SECRET=CLOUDINARY_API_SECRET:latest,SECRET_KEY=SECRET_KEY:latest,DB_PASS=DB_PASS:latest,DB_USER=DB_USER:latest,DB_NAME=DB_NAME:latest,DB_HOST=DB_HOST:latest,DB_PORT=DB_PORT:latest'
 
 timeout: '1200s'  # Adjust timeout as necessary
 options:
