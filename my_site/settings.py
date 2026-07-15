@@ -21,7 +21,11 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "solar-server-821845790992.us-central1.run.app",
+    "solarstruktura.com",
+    "www.solarstruktura.com",
+]
 
 
 CORS_ALLOW_HEADERS = [
@@ -183,4 +187,14 @@ STORAGES = {
     },
 }
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "https://solarstruktura.com",
+    "https://www.solarstruktura.com",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://solarstruktura.com",
+    "https://www.solarstruktura.com",
+]
