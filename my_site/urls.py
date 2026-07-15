@@ -17,7 +17,7 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path("", health_check),
+    path("", health_check), # health check
     path("health/", health_check),
     path("admin/", admin.site.urls),
     path('api/', include('accounts.urls')),
