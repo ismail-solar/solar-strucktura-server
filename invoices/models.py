@@ -16,17 +16,12 @@ class Invoice(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="invoices")
     plan = models.ForeignKey(Plan, on_delete=models.SET_NULL, null=True, blank=True)
     invoice_number = models.CharField(max_length=50, unique=True, blank=True)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     # stores original plan price
     original_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     # fixed discount
     discount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=0)
     # FINAL AMOUNT (after discount)
     amount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-
-    
-    
-    
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pending")
     created_at = models.DateTimeField(auto_now_add=True)
     due_date = models.DateTimeField(null=True, blank=True)
